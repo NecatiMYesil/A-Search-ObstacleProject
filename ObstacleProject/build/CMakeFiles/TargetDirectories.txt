@@ -1,0 +1,3 @@
+/Users/muratyesil/Udacity/c++/ObstacleProject/build/CMakeFiles/rebuild_cache.dir
+/Users/muratyesil/Udacity/c++/ObstacleProject/build/CMakeFiles/edit_cache.dir
+/Users/muratyesil/Udacity/c++/ObstacleProject/build/CMakeFiles/obstacle.dir

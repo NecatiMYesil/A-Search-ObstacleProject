@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/muratyesil/Udacity/c++/ObstacleProject/src/main.cpp
+fstream
+-
+iostream
+-
+sstream
+-
+string
+-
+vector
+-
+algorithm
+-
+
