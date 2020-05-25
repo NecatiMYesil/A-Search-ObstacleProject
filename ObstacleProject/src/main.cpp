@@ -88,26 +88,32 @@ void PrintBoard(const vector<vector<State>> board) {
   }
 }
 //###########################################################################
-
+/*
+AddToOpen, it adds the x,y,g,h to openlist vector and it closes that coord.
+*/
 void AddToOpen(int x, int y, int g, int h, vector<vector<int>> &openlist, vector<vector<State>> &grid) {
   openlist.push_back(vector<int>{x, y, g, h});
   grid[x][y] = State::kClosed;
 }
 
+//calculates the f values of current and possible next step's
+//return the comparison
 bool Compare(const vector<int> a, const vector<int> b) {
   int f1 = a[2] + a[3]; // f1 = g1 + h1
   int f2 = b[2] + b[3]; // f2 = g2 + h2
   return f1 > f2; 
 }
-
+//don't know what the heck is happing here. soon to be learned
 void CellSort(vector<vector<int>> *v) {
   sort(v->begin(), v->end(), Compare);
 }
-
+//calculates the Heuristic value.
+//returns the h
 int Heuristic(int x1, int y1, int x2, int y2) {
   return abs(x2 - x1) + abs(y2 - y1);
 }
 
+//checks if potential next step is on the grid and empty.
 bool CheckValidCell(int x, int y, vector<vector<State>> &grid) {
   bool on_grid_x = (x >= 0 && x < grid.size());
   bool on_grid_y = (y >= 0 && y < grid[0].size());
@@ -115,7 +121,10 @@ bool CheckValidCell(int x, int y, vector<vector<State>> &grid) {
     return grid[x][y] == State::kEmpty;
   return false;
 }
+/*
+it takes current coord and loops thru its potential next steps. if it does it closes grid on open vector.
 
+*/
 void ExpandNeighbors(const vector<int> &current, int goal[2], vector<vector<int>> &openlist, vector<vector<State>> &grid) {
   // Get current node's data.
   int x = current[0];
@@ -131,18 +140,21 @@ void ExpandNeighbors(const vector<int> &current, int goal[2], vector<vector<int>
     if (CheckValidCell(x2, y2, grid)) {
       // Increment g value and add neighbor to open list.
       int g2 = g + 1;
-      int h2 = Heuristic(x2, y2, goal[0], goal[1]);
+      int h2 = Heuristic(x2, y2, goal[0], goal[1]); //Heuristic of the current step.
       AddToOpen(x2, y2, g2, h2, openlist, grid);
     }
   }
 }
 
+/*
+it takes the grid, initial and goal points, finds the optiminal path to take from
+initial to goal.
+Returns vector of States graphically represents. 
+*/
 
 vector<vector<State>> Search(vector<vector<State>> grid, int init[2], int goal[2]){
   
   vector<vector<int>> open {};
-  
-
   int x = init[0];
   int y = init[1];
   int g = 0;
@@ -175,7 +187,7 @@ int main() {
   //read a vector from chosen file and assign to vector of vector int called board.
   int init[2]{0,0};
   int goal[2]{4,5};
-  auto board = ReadBoardFile("1.board");  
+  auto board = ReadBoardFile("/home/muratyesil/Udacity/c++/ObstacleProject/src/1.board");
   auto solution = Search(board, init, goal);
   PrintBoard(solution);
 }
