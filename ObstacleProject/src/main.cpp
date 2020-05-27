@@ -187,7 +187,7 @@ int main() {
   //read a vector from chosen file and assign to vector of vector int called board.
   int init[2]{0,0};
   int goal[2]{4,5};
-  auto board = ReadBoardFile("/home/muratyesil/Udacity/c++/ObstacleProject/src/1.board");
+  auto board = ReadBoardFile("/Users/muratyesil/Udacity/c++/A-Search-ObstacleProject/ObstacleProject/src/1.board");
   auto solution = Search(board, init, goal);
   PrintBoard(solution);
 }
